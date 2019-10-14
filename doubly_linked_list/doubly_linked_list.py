@@ -10,7 +10,7 @@ class ListNode:
 
     """Wrap the given value in a ListNode and insert it
     after this node. Note that this node could already
-    have a next node it is point to."""
+    have a next node it is pointing to."""
     def insert_after(self, value):
         current_next = self.next
         self.next = ListNode(value, self, current_next)
@@ -52,7 +52,7 @@ class DoublyLinkedList:
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
-        pass
+        new_node = ListNode(value, None, self.head)
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
@@ -64,7 +64,17 @@ class DoublyLinkedList:
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
     def add_to_tail(self, value):
-        pass
+        new_node = ListNode(value, self.tail, None)
+
+        if not self.head and not self.tail:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+
+        self.length += 1
+
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
